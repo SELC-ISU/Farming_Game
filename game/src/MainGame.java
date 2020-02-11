@@ -11,6 +11,7 @@ public class MainGame{
         display = new Display(keyInput); //Creates new display to draw objects
         Loop gameLoop = new Loop(display);
         frame = new Frame(display); //Creates new window and adds display
+        gameLoop.Start();
     }
 
 }

@@ -6,11 +6,15 @@ public class Loop {
         this.display = display;
     }
 
-    public void Start() throws InterruptedException {
+    public void Start(){
 
         while(true) {
                 display.repaint();
+            try {
                 Thread.sleep(20);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+        }
     }
 }
