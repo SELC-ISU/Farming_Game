@@ -12,6 +12,13 @@ public class Display extends JPanel {
         this.height = height;
     }
 
+    public void initializeRectangleDimensions(){
+        this.x = 100;
+        this.y = 100;
+        this.width = 50;
+        this.height = 50;
+    }
+
     public Display(Input keyInput){
         addKeyListener(keyInput);
         setFocusable(true);
