@@ -3,6 +3,10 @@ import java.awt.*;
 
 public class Display extends JPanel {
 
+    int x, y, width, height;
+
+
+
     public Display(Input keyInput){
         addKeyListener(keyInput);
         setFocusable(true);
@@ -10,7 +14,7 @@ public class Display extends JPanel {
 
     @Override
     public void paintComponent(Graphics g){     //Method for drawing everything onscreen
-        g.fillRect(100,100,50,50); //Draws rectangle
+        g.fillRect(x,y,width,height); //Draws rectangle
 
     }
 
