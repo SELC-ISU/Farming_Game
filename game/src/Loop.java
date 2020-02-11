@@ -1,7 +1,15 @@
 public class Loop {
-    public void Start() {
-        while(true) {
 
-        }
+    private Display display;
+
+    public Loop(Display display){
+        this.display = display;
+    }
+
+    public void Start() {
+
+        while(true) {
+                display.repaint();
+            }
     }
 }
