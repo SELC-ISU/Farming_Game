@@ -3,11 +3,13 @@ import java.awt.event.KeyListener;
 
 public class Input implements KeyListener {
 
-    public char key = '!';
+    private char key = '!';
 
     @Override
     public void keyTyped(KeyEvent e) {
         key = e.getKeyChar();
+        System.out.println(key);
+
     }
 
     @Override

@@ -6,8 +6,10 @@ public class MainGame{
         System.out.println("Starting game...");
         Frame frame;
         Display display;
+        Input keyInput;
+        keyInput = new Input();
 
-        display = new Display(); //Creates new display to draw objects
+        display = new Display(keyInput); //Creates new display to draw objects
         frame = new Frame(display); //Creates new window and adds display
     }
 
