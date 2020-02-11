@@ -5,6 +5,7 @@ public class Display extends JPanel {
 
     public Display(Input keyInput){
         addKeyListener(keyInput);
+        setFocusable(true);
     }
 
     @Override
