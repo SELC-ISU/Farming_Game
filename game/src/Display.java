@@ -26,6 +26,7 @@ public class Display extends JPanel {
 
     @Override
     public void paintComponent(Graphics g){     //Method for drawing everything onscreen
+    	g.clearRect(0, 0, 1280, 720);
         g.fillRect(x,y,width,height); //Draws rectangle
         x+=5;
     }
