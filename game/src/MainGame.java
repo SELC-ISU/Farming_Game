@@ -9,6 +9,7 @@ public class MainGame{
         Input keyInput;
         keyInput = new Input();
         display = new Display(keyInput); //Creates new display to draw objects
+        display.initializeRectangleDimensions();
         Loop gameLoop = new Loop(display);
         frame = new Frame(display); //Creates new window and adds display
         gameLoop.Start();
