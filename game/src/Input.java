@@ -3,7 +3,7 @@ import java.awt.event.KeyListener;
 
 public class Input implements KeyListener {
 
-    private char key = '!';
+    public char key = '!';
 
     @Override
     public void keyTyped(KeyEvent e) {

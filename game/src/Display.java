@@ -4,6 +4,7 @@ import java.awt.*;
 public class Display extends JPanel {
 
     int x, y, width, height;
+    Input keyInput;
 
     public void setRectangleDimensions(int x, int y, int width, int height){
         this.x = x;
@@ -18,8 +19,30 @@ public class Display extends JPanel {
         this.width = 50;
         this.height = 50;
     }
+    
+    public void moveRectangle(char c) {
+    	
+    	if(c =='a') {
+    		//left
+    		x -= 1;
+    		x = Math.max(x, 0);
+    	}else if(c == 'd') {
+    		//right
+    		x += 1;
+    		x = Math.min(x, 1230);
+    	}else if(c == 'w') {
+    		//up
+    		y -= 1;
+    		y = Math.max(y, 0);
+    	}else if(c ==  's') {
+    		//down
+    		y += 1;
+    		y = Math.min(y, 670);
+    	}
+    }
 
     public Display(Input keyInput){
+    	this.keyInput = keyInput;
         addKeyListener(keyInput);
         setFocusable(true);
     }
@@ -28,7 +51,7 @@ public class Display extends JPanel {
     public void paintComponent(Graphics g){     //Method for drawing everything onscreen
     	g.clearRect(0, 0, 1280, 720);
         g.fillRect(x,y,width,height); //Draws rectangle
-        x+=5;
+        moveRectangle(keyInput.key);
     }
 
 }
