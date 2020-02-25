@@ -24,19 +24,19 @@ public class Display extends JPanel {
     	
     	if(c =='a') {
     		//left
-    		x -= 1;
+    		x -= 2;
     		x = Math.max(x, 0);
     	}else if(c == 'd') {
     		//right
-    		x += 1;
+    		x += 2;
     		x = Math.min(x, 1230);
     	}else if(c == 'w') {
     		//up
-    		y -= 1;
+    		y -= 2;
     		y = Math.max(y, 0);
     	}else if(c ==  's') {
     		//down
-    		y += 1;
+    		y += 2;
     		y = Math.min(y, 670);
     	}
     }
