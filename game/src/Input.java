@@ -19,6 +19,6 @@ public class Input implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-    	key = '!';
+    	
     }
 }
