@@ -12,6 +12,7 @@ public class MainGame{
         
         display = new Display(keyInput); //Creates new display to draw objects
         display.initializeRectangleDimensions();
+        display.createBlankMap();
         
         
         Loop gameLoop = new Loop(display);

@@ -5,6 +5,10 @@ public class Display extends JPanel {
 
     int x, y, width, height;
     Input keyInput;
+    
+    private int worldSize = 20;
+    
+    private Block[][] world = new Block[worldSize][worldSize];
 
     public void setRectangleDimensions(int x, int y, int width, int height){
         this.x = x;
@@ -52,6 +56,22 @@ public class Display extends JPanel {
     	g.clearRect(0, 0, 1280, 720);
         g.fillRect(x,y,width,height); //Draws rectangle
         moveRectangle(keyInput.key);
+        
+        for(int i = 0; i < worldSize; i++) {
+    		for(int j = 0; j < worldSize; j++) {
+    			g.drawRect(world[i][j].getX(), world[i][j].getY(), world[i][j].getWidth(), world[i][j].getHeight());
+    		}
+    	}
+        
+    }
+    
+    public void createBlankMap() {
+    	for(int i = 0; i < worldSize; i++) {
+    		for(int j = 0; j < worldSize; j++) {
+    			world[i][j] = new Block(10*i,10*j,10,10);
+    		}
+    	}
+    	
     }
 
 }
