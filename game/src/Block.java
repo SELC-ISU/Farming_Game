@@ -2,14 +2,15 @@ import java.awt.Rectangle;
 
 public class Block{
 
-	private int x,y,width,height;
+	private int x,y,width,height, blockID;
 	
 	
-	public Block(int x,int y, int width, int height) {
+	public Block(int x,int y, int width, int height,int blockID) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.blockID = blockID;
 	}
 
 
@@ -50,6 +51,16 @@ public class Block{
 
 	public void setHeight(int height) {
 		this.height = height;
+	}
+
+
+	public int getBlockID() {
+		return blockID;
+	}
+
+
+	public void setBlockID(int blockID) {
+		this.blockID = blockID;
 	}
 	
 	

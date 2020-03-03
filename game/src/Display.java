@@ -11,6 +11,9 @@ public class Display extends JPanel {
     private int worldHeight = 18;
     
     private Block[][] world = new Block[worldWidth][worldHeight];
+    private int[][] saveTerrain = new int[worldWidth][worldHeight];
+    
+    private Save save;
 
     public void setRectangleDimensions(int x, int y, int width, int height){
         this.x = x;
@@ -51,6 +54,20 @@ public class Display extends JPanel {
     	this.keyInput = keyInput;
         addKeyListener(keyInput);
         setFocusable(true);
+        
+        createBlankMap();
+        
+       
+        
+        saveTerrain = save.loadTerrain("resources/save.txt",worldWidth, worldHeight);
+        
+        int i,j;
+		for(i = 0; i < worldWidth;i++) {
+			for(j = 0; j < worldHeight;j++) {
+				world[i][j].setBlockID(saveTerrain[j][i]);
+				}
+		}
+		
     }
 
     @Override
@@ -61,7 +78,16 @@ public class Display extends JPanel {
         
         for(int i = 0; i < worldWidth; i++) {
     		for(int j = 0; j < worldHeight; j++) {
-    			g.drawRect(world[i][j].getX(), world[i][j].getY(), world[i][j].getWidth(), world[i][j].getHeight());
+    			
+    			if(world[i][j].getBlockID()==0) {
+    				g.setColor(Color.green);
+    			}
+    			
+    			if(world[i][j].getBlockID()==1) {
+    				g.setColor(Color.blue);
+    			}
+    			
+    			g.fillRect(world[i][j].getX(), world[i][j].getY(), world[i][j].getWidth(), world[i][j].getHeight());
     		}
     	}
         
@@ -70,7 +96,7 @@ public class Display extends JPanel {
     public void createBlankMap() {
     	for(int i = 0; i < worldWidth; i++) {
     		for(int j = 0; j < worldHeight; j++) {
-    			world[i][j] = new Block(blockSize*i,blockSize*j,blockSize,blockSize);
+    			world[i][j] = new Block(blockSize*i,blockSize*j,blockSize,blockSize, 0);
     		}
     	}
     	
