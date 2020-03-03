@@ -40,7 +40,7 @@ public class Display extends JPanel {
     		y = Math.min(y, 670);
     	}
     }
-
+    
     public Display(Input keyInput){
     	this.keyInput = keyInput;
         addKeyListener(keyInput);
