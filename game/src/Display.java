@@ -57,7 +57,7 @@ public class Display extends JPanel {
         
         createBlankMap();
         
-       
+       save = new Save();
         
         saveTerrain = save.loadTerrain("resources/save.txt",worldWidth, worldHeight);
         

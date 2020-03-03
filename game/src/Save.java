@@ -6,6 +6,7 @@ import java.io.IOException;
 public class Save {
 
 	public int[][] loadTerrain(String fileName,int worldWidth,int worldHeight){
+		
 		try {
 			FileReader fr = new FileReader(fileName);
 			BufferedReader br = new BufferedReader(fr);
@@ -19,6 +20,7 @@ public class Save {
 	                for (String s : strArray) {
 	                    if (!s.trim().isEmpty()) {
 	                        array[i][j++] = Integer.parseInt(s);
+	                   
 	                    }
 	                }
 	                line = br.readLine();
