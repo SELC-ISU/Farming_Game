@@ -47,6 +47,15 @@ public class Display extends JPanel {
     		//down
     		y += 2;
     		y = Math.min(y, 670);
+    	}else if(c == ' ') {
+    		//use tool
+    		for(int i = 0; i < worldWidth;i++) {
+    			for(int j = 0; j < worldHeight;j++) {
+    				if (world[i][j].contains(x+width/2, y+height)) {
+    					world[i][j].setBlockID(1);
+    				}
+    			}
+    		}
     	}
     }
 
@@ -73,8 +82,6 @@ public class Display extends JPanel {
     @Override
     public void paintComponent(Graphics g){     //Method for drawing everything on screen
     	g.clearRect(0, 0, 1280, 720);
-        g.fillRect(x,y,width,height); //Draws rectangle
-        moveRectangle(keyInput.key);
         
         for(int i = 0; i < worldWidth; i++) {
     		for(int j = 0; j < worldHeight; j++) {
@@ -90,7 +97,9 @@ public class Display extends JPanel {
     			g.fillRect(world[i][j].getX(), world[i][j].getY(), world[i][j].getWidth(), world[i][j].getHeight());
     		}
     	}
-        
+        g.setColor(Color.black);
+        g.fillRect(x,y,width,height); //Draws rectangle
+        moveRectangle(keyInput.key);
     }
     
     public void createBlankMap() {
