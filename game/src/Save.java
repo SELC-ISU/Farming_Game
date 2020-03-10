@@ -49,7 +49,7 @@ public class Save {
 		FileWriter fileWriter = new FileWriter("resources/save.txt");
 		for(int i = 0; i < 18; i++) {
 			for(int j = 0; j < 32; j++) {
-				fileWriter.write(terrain[i][j]);
+				fileWriter.write((char)terrain[i][j]+'0');
 				fileWriter.write(" ");
 				
 			}
