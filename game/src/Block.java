@@ -63,7 +63,9 @@ public class Block{
 		this.blockID = blockID;
 	}
 	
-	
+	public boolean contains(int givenX, int givenY) {
+		return (givenY > y && givenY < y+height && givenX > x && givenX < x+width);
+	}
 	
 	
 }

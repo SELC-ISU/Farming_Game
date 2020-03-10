@@ -10,7 +10,7 @@ public class Save {
 		try {
 			FileReader fr = new FileReader(fileName);
 			BufferedReader br = new BufferedReader(fr);
-			int array[][] = new int[worldWidth][worldHeight];
+			int array[][] = new int[worldHeight][worldWidth];
 		    String line = br.readLine();
 		    int i = 0, j = 0;
 	        while (line != null) {
