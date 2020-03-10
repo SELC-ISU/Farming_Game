@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class Save {
@@ -43,8 +44,18 @@ public class Save {
 		
 	}
 	
-	public void saveTerrain(int[][] terrain) {
+	public void saveWorld(int[][] terrain) throws IOException {
 		
+		FileWriter fileWriter = new FileWriter("resources/save.txt");
+		for(int i = 0; i < 18; i++) {
+			for(int j = 0; j < 32; j++) {
+				fileWriter.write(terrain[i][j]);
+				fileWriter.write(" ");
+				
+			}
+			fileWriter.write("\n");
+		}
+		fileWriter.close();
 	}
 	
 }

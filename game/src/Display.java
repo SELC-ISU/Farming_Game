@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class Display extends JPanel {
 
@@ -56,8 +57,25 @@ public class Display extends JPanel {
     				}
     			}
     		}
+    	}else if(c == 'z') {
+    		int i,j;
+    		for(i = 0; i < worldWidth;i++) {
+    			for(j = 0; j < worldHeight;j++) {
+    				//world[i][j].setBlockID(saveTerrain[j][i]);
+    				saveTerrain[j][i] =world[i][j].getBlockID();
+    				}
+    		}
+    		
+    		try {
+				save.saveWorld(saveTerrain);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			}
     	}
-    }
+
     
     public Display(Input keyInput){
     	this.keyInput = keyInput;
