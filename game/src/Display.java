@@ -39,7 +39,7 @@ public class Display extends JPanel {
     	}else if(c == 'd') {
     		//right
     		x += 2;
-    		x = Math.min(x, 1230);
+    		x = Math.min(x, 1280-width);
     	}else if(c == 'w') {
     		//up
     		y -= 2;
@@ -47,7 +47,7 @@ public class Display extends JPanel {
     	}else if(c ==  's') {
     		//down
     		y += 2;
-    		y = Math.min(y, 670);
+    		y = Math.min(y, 720-height);
     	}else if(c == ' ') {
     		//use tool
     		for(int i = 0; i < worldWidth;i++) {
