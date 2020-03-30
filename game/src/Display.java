@@ -149,6 +149,14 @@ public class Display extends JPanel {
     				g.setColor(Color.green);
     			}
     			
+    			if(world[i][j].getBlockID()==2) {
+    				g.setColor(Color.red);
+    			}
+    			
+    			if(world[i][j].getBlockID()==3) {
+    				g.setColor(Color.yellow);
+    			}
+    			
     			g.fillRect(world[i][j].getX(), world[i][j].getY(), world[i][j].getWidth(), world[i][j].getHeight());
     		}
     	}
