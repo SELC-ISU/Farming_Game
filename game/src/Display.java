@@ -25,44 +25,36 @@ public class Display extends JPanel {
      */
     
     private Save save;
-
-    public void setRectangleDimensions(int x, int y, int width, int height){
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-    }
+    private Player player;
 
     public void initializeRectangleDimensions(){
         this.x = 100;
         this.y = 100;
         this.width = 30;
         this.height = 40;
+        
+        player = new Player(x,y,width,height,1280,720);
     }
     
     public void moveRectangle(char c) {
     	
-    	if(c =='a') {
-    		//left
-    		x -= 2;
-    		x = Math.max(x, 0);
-    	}else if(c == 'd') {
-    		//right
-    		x += 2;
-    		x = Math.min(x, 1280-width);
-    	}else if(c == 'w') {
-    		//up
-    		y -= 2;
-    		y = Math.max(y, 0);
-    	}else if(c ==  's') {
-    		//down
-    		y += 2;
-    		y = Math.min(y, 720-height);
+     	if(c =='a') {
+      		player.moveLeft();
+      		System.out.println(player.getX());
+      	}else if(c == 'd') {
+      		player.moveRight();
+      		System.out.println(player.getX());
+   	   	}else if(c == 'w') {
+   	    	player.moveUp();
+   	    	System.out.println(player.getY());
+   	   	}else if(c ==  's') { 
+   	   		player.moveDown();
+   	   	System.out.println(player.getY());
     	}else if(c == ' ') {
     		//use tool
     		for(int i = 0; i < worldWidth;i++) {
     			for(int j = 0; j < worldHeight;j++) {
-    				if (world[i][j].contains(x+width/2, y+height)) {
+    				if (world[i][j].contains(player.getX()+player.getWidth()/2, player.getY()+player.getHeight())) {
     					world[i][j].setBlockID(tool);
     				}
     			}
@@ -72,7 +64,7 @@ public class Display extends JPanel {
     		for(i = 0; i < worldWidth;i++) {
     			for(j = 0; j < worldHeight;j++) {
     				//world[i][j].setBlockID(saveTerrain[j][i]);
-    				saveTerrain[j][i] =world[i][j].getBlockID();
+    				saveTerrain[j][i] = world[i][j].getBlockID();
     				}
     		}
     		
@@ -153,7 +145,7 @@ public class Display extends JPanel {
     		}
     	}
         g.setColor(Color.black);
-        g.fillRect(x,y,width,height); //Draws rectangle
+        g.fillRect(player.getX(),player.getY(),player.getWidth(),player.getHeight()); //Draws rectangle
         moveRectangle(keyInput.key);
     }
     

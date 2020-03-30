@@ -1,8 +1,8 @@
 
 public class Player {
 
-	private int x;
-	private int y;
+	private double x;
+	private double y;
 	private int width;
 	private int height;
 	private int frameWidth;
@@ -21,11 +21,11 @@ public class Player {
 	}
 	
 	public int getX() {
-		return x;
+		return (int) x;
 	}
 	
 	public int getY() {
-		return y;
+		return (int) y;
 	}
 	
 	public int getWidth() {
@@ -61,26 +61,26 @@ public class Player {
 	
 	private void checkBoundsY() {
 		y = Math.max(y, 0);
-		y = Math.min(y, frameHeight-width);
+		y = Math.min(y, frameHeight-height);
 	}
 	
 	public void moveRight() {
-		x += 2;
+		x += .25;
 		checkBoundsX();
 	}
 	
 	public void moveLeft() {
-		x -= 2;
+		x -= .25;
 		checkBoundsX();
 	}
 	
 	public void moveUp() {
-		y -= 2;
+		y -= .25;
 		checkBoundsY();
 	}
 	
 	public void moveDown() {
-		y += 2;
+		y += .25;
 		checkBoundsY();
 	}
 }
