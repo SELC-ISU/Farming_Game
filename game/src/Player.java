@@ -63,4 +63,24 @@ public class Player {
 		y = Math.max(y, 0);
 		y = Math.min(y, frameHeight-width);
 	}
+	
+	public void moveRight() {
+		x += 2;
+		checkBoundsX();
+	}
+	
+	public void moveLeft() {
+		x -= 2;
+		checkBoundsX();
+	}
+	
+	public void moveUp() {
+		y -= 2;
+		checkBoundsY();
+	}
+	
+	public void moveDown() {
+		y += 2;
+		checkBoundsY();
+	}
 }
