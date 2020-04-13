@@ -11,6 +11,8 @@ public class Display extends JPanel {
     private int worldWidth = 32;
     private int worldHeight = 18;
     private int tool = 1; //tool first set to cultivate
+    private int cropValue = 0;
+    private int cash = 0;
     private String toolName = "Cultivator";
     private JLabel toolTitle = new JLabel("Current Tool = " +toolName);
     private Block[][] world = new Block[worldWidth][worldHeight];
@@ -52,17 +54,26 @@ public class Display extends JPanel {
    	   	System.out.println(player.getY());
     	}else if(c == ' ') {
     		//use tool
+    		cropValue = 0;
     		for(int i = 0; i < worldWidth;i++) {
     			for(int j = 0; j < worldHeight;j++) {
 	    			if(tool == 1 && world[i][j].getBlockID() == 0 || tool == 2 && world[i][j].getBlockID() == 1 ||
 	    					  tool == 0 && world[i][j].getBlockID() == 2) {
     					if (world[i][j].contains(player.getX()+player.getWidth()/2, player.getY()+player.getHeight())) {
 	    					world[i][j].setBlockID(tool);
-	    				}
+    					}
+    					//turns cropVale to cash if you harvest block
+    					if(world[i][j].contains(player.getX()+player.getWidth()/2, player.getY()+player.getHeight()) && tool ==0) {
+    						cash+= 50;
+    					}
 	    			}
-	    			
+	    			if(world[i][j].getBlockID() == 2) {
+						cropValue =  cropValue + 25;
+					}
     			}
     		}
+
+    	
     	}else if(c == 'z') {
     		int i,j;
     		for(i = 0; i < worldWidth;i++) {
@@ -121,8 +132,10 @@ public class Display extends JPanel {
     	g.clearRect(0, 0, 1280, 720);
     	
     	//creates label in upper left
-    	toolTitle.setText("<html>Current Tool = " +toolName +"<br>Press 1 for Cultivator<br>Press 2 for Planter<br>Press 3 for Harvester</html>");
-		toolTitle.setBounds(0, 0, 200, 50);
+    	toolTitle.setText("<html>Current Tool = " +toolName +
+    			"<br>Press 1 for Cultivator<br>Press 2 for Planter"
+    			+ "<br>Press 3 for Harvester<br>Harvest to sell!<br>Crop value = " +cropValue + "<br>Cash = " +cash + "</html>");
+		toolTitle.setBounds(0, 0, 200, 100);
 		toolTitle.setFont(new Font("Calibri", Font.BOLD, 10));
 		add(toolTitle);
 		
