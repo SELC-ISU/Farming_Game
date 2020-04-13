@@ -54,9 +54,13 @@ public class Display extends JPanel {
     		//use tool
     		for(int i = 0; i < worldWidth;i++) {
     			for(int j = 0; j < worldHeight;j++) {
-    				if (world[i][j].contains(player.getX()+player.getWidth()/2, player.getY()+player.getHeight())) {
-    					world[i][j].setBlockID(tool);
-    				}
+	    			if(tool == 1 && world[i][j].getBlockID() == 0 || tool == 2 && world[i][j].getBlockID() == 1 ||
+	    					  tool == 0 && world[i][j].getBlockID() == 2) {
+    					if (world[i][j].contains(player.getX()+player.getWidth()/2, player.getY()+player.getHeight())) {
+	    					world[i][j].setBlockID(tool);
+	    				}
+	    			}
+	    			
     			}
     		}
     	}else if(c == 'z') {
