@@ -58,7 +58,7 @@ public class Display extends JPanel {
     		for(int i = 0; i < worldWidth;i++) {
     			for(int j = 0; j < worldHeight;j++) {
 	    			if(tool == 1 && world[i][j].getBlockID() == 0 || tool == 2 && world[i][j].getBlockID() == 1 ||
-	    					  tool == 0 && world[i][j].getBlockID() == 2) {
+	    					  tool == 0 && world[i][j].getBlockID() == 4) {
     					if (world[i][j].contains(player.getX()+player.getWidth()/2, player.getY()+player.getHeight())) {
 	    					world[i][j].setBlockID(tool);
     					}
@@ -67,9 +67,10 @@ public class Display extends JPanel {
     						cash+= 50;
     					}
 	    			}
-	    			if(world[i][j].getBlockID() == 2) {
+	    			if(world[i][j].getBlockID() == 4) {
 						cropValue =  cropValue + 25;
 					}
+	    			
 	    			if(world[i][j].getBlockID() == 2) {
 	    				world[i][j].startGrowTime();
 	    			}
@@ -82,7 +83,6 @@ public class Display extends JPanel {
     		int i,j;
     		for(i = 0; i < worldWidth;i++) {
     			for(j = 0; j < worldHeight;j++) {
-    				//world[i][j].setBlockID(saveTerrain[j][i]);
     				saveTerrain[j][i] = world[i][j].getBlockID();
     				}
     		}
@@ -97,7 +97,7 @@ public class Display extends JPanel {
 		}else if(c == '1') {
 			tool = 1;
 			toolName = "Cultivator";
-		//planting but checking if cultivated first (TODO)
+		//planting but checking if cultivated first 
 		}else if(c == '2') {
 			tool = 2;
 			toolName = "Planter";
@@ -138,7 +138,7 @@ public class Display extends JPanel {
     	//creates label in upper left
     	toolTitle.setText("<html>Current Tool = " +toolName +
     			"<br>Press 1 for Cultivator<br>Press 2 for Planter"
-    			+ "<br>Press 3 for Harvester<br>Press z to Save!<br>Harvest to sell!<br><br>Crop value = " +cropValue + "<br>Cash = " +cash + "</html>");
+    			+ "<br>Press 3 for Harvester<br>Press z to Save!<br>Black = Ready to Harvest!<br>Harvest to sell!<br><br>Crop value = " +cropValue + "<br>Cash = " +cash + "</html>");
 		toolTitle.setBounds(0, 0, 200, 125);
 		toolTitle.setFont(new Font("Calibri", Font.BOLD, 10));
 		add(toolTitle);
@@ -147,25 +147,33 @@ public class Display extends JPanel {
     		for(int j = 0; j < worldHeight; j++) {
     			//grows the plants
     			world[i][j].advanceGrowTime();
-    			if(world[i][j].getGrowTime() > 500) {
+    			if(world[i][j].getGrowTime() == 2000) {
     				world[i][j].setBlockID(3);
+    			}
+    			if(world[i][j].getGrowTime() == 4000) {
+    				world[i][j].setBlockID(4);
     			}
     			
     			//changes the color based on the block type
+    			//grass
     			if(world[i][j].getBlockID()==0) {
     				g.setColor(Color.green);
     			}
-    			
+    			//cultivated
     			if(world[i][j].getBlockID()==1) {
     				g.setColor(Color.LIGHT_GRAY);
     			}
-    			
+    			//planted
     			if(world[i][j].getBlockID()==2) {
     				g.setColor(Color.GRAY);
     			}
-    			
+    			//growing
     			if(world[i][j].getBlockID()==3) {
     				g.setColor(Color.DARK_GRAY);
+    			}
+    			//ready to harvest
+    			if(world[i][j].getBlockID()==4) {
+    				g.setColor(Color.BLACK);
     			}
  
     			g.fillRect(world[i][j].getX(), world[i][j].getY(), world[i][j].getWidth(), world[i][j].getHeight());

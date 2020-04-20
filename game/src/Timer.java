@@ -8,7 +8,7 @@ public class Timer {
 	private boolean timeStart;
 	
 	public Timer() {
-		lastTime = System.nanoTime();
+		
     	amountOfTicks = 60D;
     	ns = 1000000000 / amountOfTicks;
     	delta  = 0;
@@ -16,7 +16,8 @@ public class Timer {
 	}
 
 	public void advanceTime() {
-    	long now = System.nanoTime();
+		
+		long now = System.nanoTime();
      	delta += (now - lastTime) / ns;
      	lastTime = now;
     	if(delta >= 1 && timeStart) {
@@ -24,11 +25,14 @@ public class Timer {
      		delta--;
      	}
 	}
-	public void setTime() {
-		
+	
+
+	public void resetTime() {
+		time = 0;
 	}
 	public void startTime() {
 		timeStart = true;
+		lastTime = System.nanoTime();
 	}
 	public int getTime() {
 		return time;
