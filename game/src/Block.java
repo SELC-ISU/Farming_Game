@@ -3,7 +3,8 @@ import java.awt.Rectangle;
 public class Block{
 
 	private int x,y,width,height, blockID;
-	
+
+	private Timer t;
 	
 	public Block(int x,int y, int width, int height,int blockID) {
 		this.x = x;
@@ -11,6 +12,7 @@ public class Block{
 		this.width = width;
 		this.height = height;
 		this.blockID = blockID;
+		t = new Timer();
 	}
 
 
@@ -67,5 +69,14 @@ public class Block{
 		return (givenY > y && givenY < y+height && givenX > x && givenX < x+width);
 	}
 	
+	public void advanceGrowTime() {
+		t.advanceTime();
+	}
+	public void startGrowTime() {
+		t.startTime();
+	}
+	public int getGrowTime() {
+    	return t.getTime();
+    }
 	
 }

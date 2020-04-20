@@ -70,6 +70,10 @@ public class Display extends JPanel {
 	    			if(world[i][j].getBlockID() == 2) {
 						cropValue =  cropValue + 25;
 					}
+	    			if(world[i][j].getBlockID() == 2) {
+	    				world[i][j].startGrowTime();
+	    			}
+	    			
     			}
     		}
 
@@ -104,7 +108,7 @@ public class Display extends JPanel {
 			
 		}
     	
-    	}
+    }
 
     
     public Display(Input keyInput){
@@ -134,14 +138,20 @@ public class Display extends JPanel {
     	//creates label in upper left
     	toolTitle.setText("<html>Current Tool = " +toolName +
     			"<br>Press 1 for Cultivator<br>Press 2 for Planter"
-    			+ "<br>Press 3 for Harvester<br>Harvest to sell!<br>Crop value = " +cropValue + "<br>Cash = " +cash + "</html>");
-		toolTitle.setBounds(0, 0, 200, 100);
+    			+ "<br>Press 3 for Harvester<br>Press z to Save!<br>Harvest to sell!<br><br>Crop value = " +cropValue + "<br>Cash = " +cash + "</html>");
+		toolTitle.setBounds(0, 0, 200, 125);
 		toolTitle.setFont(new Font("Calibri", Font.BOLD, 10));
 		add(toolTitle);
 		
         for(int i = 0; i < worldWidth; i++) {
     		for(int j = 0; j < worldHeight; j++) {
+    			//grows the plants
+    			world[i][j].advanceGrowTime();
+    			if(world[i][j].getGrowTime() > 500) {
+    				world[i][j].setBlockID(3);
+    			}
     			
+    			//changes the color based on the block type
     			if(world[i][j].getBlockID()==0) {
     				g.setColor(Color.green);
     			}
@@ -174,5 +184,7 @@ public class Display extends JPanel {
     	}
     	
     }
+    
 
+    	
 }
