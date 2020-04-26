@@ -14,6 +14,7 @@ public class Display extends JPanel {
     private int worldWidth = 32;
     private int worldHeight = 18;
     private int tool = 1; //tool first set to cultivate
+    private boolean selling = false; //true if ready to sell
     private int cropValue = 0;
     private int cash = 0;
     private String toolName = "Cultivator";
@@ -60,23 +61,26 @@ public class Display extends JPanel {
    	   	System.out.println(player.getY());
     	}else if(c == ' ') {
     		//use tool
-    		cropValue = 0;
+    		//cropValue = 0;
     		for(int i = 0; i < worldWidth;i++) {
     			for(int j = 0; j < worldHeight;j++) {
 	    			if(tool == 1 && world[i][j].getBlockID() == 0 || tool == 2 && world[i][j].getBlockID() == 1 ||
-	    					  tool == 0 && world[i][j].getBlockID() == 4) {
-    					if (world[i][j].contains(player.getX()+player.getWidth()/2, player.getY()+player.getHeight())) {
+	    					  tool == 1 && world[i][j].getBlockID() == 4) {
+	    				
+	    				//turns cropValue to cash if you harvest block
+						if(world[i][j].contains(player.getX()+player.getWidth()/2, player.getY()+player.getHeight()) && selling) {
+							cash+= 50;
+							cropValue -= 25;
+						}
+						
+						//does the action that the tool is meant to do. Resets the grow time when done.
+						if (world[i][j].contains(player.getX()+player.getWidth()/2, player.getY()+player.getHeight())) {
 	    					world[i][j].setBlockID(tool);
-    					}
-    					//turns cropVale to cash if you harvest block
-    					if(world[i][j].contains(player.getX()+player.getWidth()/2, player.getY()+player.getHeight()) && tool ==0) {
-    						cash+= 50;
-    					}
+	    					world[i][j].resetGrowTime();
+						}
 	    			}
-	    			if(world[i][j].getBlockID() == 4) {
-						cropValue =  cropValue + 25;
-					}
 	    			
+	    			//if planted start growing
 	    			if(world[i][j].getBlockID() == 2) {
 	    				world[i][j].startGrowTime();
 	    			}
@@ -103,13 +107,16 @@ public class Display extends JPanel {
 		}else if(c == '1') {
 			tool = 1;
 			toolName = "Cultivator";
+			selling = false;
 		//planting but checking if cultivated first 
 		}else if(c == '2') {
 			tool = 2;
 			toolName = "Planter";
+			selling = false;
 		//harvesting
 		}else if(c == '3') {
-			tool = 0;
+			tool = 1;
+			selling = true;
 			toolName = "Harvester";
 			
 		}
@@ -167,6 +174,7 @@ public class Display extends JPanel {
     				world[i][j].setBlockID(3);
     			}
     			if(world[i][j].getGrowTime() == 4000) {
+    				cropValue =  cropValue + 25;
     				world[i][j].setBlockID(4);
     			}
     			

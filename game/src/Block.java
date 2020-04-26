@@ -69,12 +69,31 @@ public class Block{
 		return (givenY > y && givenY < y+height && givenX > x && givenX < x+width);
 	}
 	
+	/**
+	 * resets the growth time
+	 */
+	public void resetGrowTime() {
+		t.resetTime();
+	}
+	
+	/**
+	 * advances the growth of the plants 
+	 */
 	public void advanceGrowTime() {
 		t.advanceTime();
 	}
+	
+	/**
+	 * starts the timer for the block 
+	 */
 	public void startGrowTime() {
 		t.startTime();
 	}
+	
+	/**
+	 * gets the time of the block
+	 * @return time
+	 */
 	public int getGrowTime() {
     	return t.getTime();
     }
