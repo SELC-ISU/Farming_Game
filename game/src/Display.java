@@ -1,5 +1,8 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 public class Display extends JPanel {
@@ -17,7 +20,8 @@ public class Display extends JPanel {
     private JLabel toolTitle = new JLabel("Current Tool = " +toolName);
     private Block[][] world = new Block[worldWidth][worldHeight];
     private int[][] saveTerrain = new int[worldWidth][worldHeight];
-
+    private BufferedImage playerImage;
+    private BufferedImage grass;
     /*
      * Block id 0 - plain grass (Green)
      * Block id 1 - cultivated (Light Gray)
@@ -128,7 +132,13 @@ public class Display extends JPanel {
 				world[i][j].setBlockID(saveTerrain[j][i]);
 				}
 		}
-		
+		try {
+			playerImage =  ImageIO.read(new File("..//Farming_Game//resources//farmer.jpg"));
+			grass = ImageIO.read(new File("..//Farming_Game//resources//grass.jpg"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     @Override
@@ -156,9 +166,7 @@ public class Display extends JPanel {
     			
     			//changes the color based on the block type
     			//grass
-    			if(world[i][j].getBlockID()==0) {
-    				g.setColor(Color.green);
-    			}
+    			 
     			//cultivated
     			if(world[i][j].getBlockID()==1) {
     				g.setColor(Color.LIGHT_GRAY);
@@ -175,12 +183,16 @@ public class Display extends JPanel {
     			if(world[i][j].getBlockID()==4) {
     				g.setColor(Color.BLACK);
     			}
- 
-    			g.fillRect(world[i][j].getX(), world[i][j].getY(), world[i][j].getWidth(), world[i][j].getHeight());
+    			if(world[i][j].getBlockID()==0) {
+    				g.drawImage(grass,world[i][j].getX(), world[i][j].getY(), world[i][j].getWidth(), world[i][j].getHeight(),null);
+    			}else {
+    				g.fillRect(world[i][j].getX(), world[i][j].getY(), world[i][j].getWidth(), world[i][j].getHeight());
+    			}
+    			
     		}
     	}
         g.setColor(Color.black);
-        g.fillRect(player.getX(),player.getY(),player.getWidth(),player.getHeight()); //Draws rectangle
+        g.drawImage(playerImage,player.getX(),player.getY(),player.getWidth(),player.getHeight(),null); //Draws rectangle
         moveRectangle(keyInput.key);
     }
     
