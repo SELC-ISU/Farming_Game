@@ -22,6 +22,8 @@ public class Display extends JPanel {
     private int[][] saveTerrain = new int[worldWidth][worldHeight];
     private BufferedImage playerImage;
     private BufferedImage grass;
+    private BufferedImage dirt;
+    private BufferedImage growth1,growth2,finalGrowth;
     /*
      * Block id 0 - plain grass (Green)
      * Block id 1 - cultivated (Light Gray)
@@ -135,6 +137,10 @@ public class Display extends JPanel {
 		try {
 			playerImage =  ImageIO.read(new File("..//Farming_Game//resources//farmer.jpg"));
 			grass = ImageIO.read(new File("..//Farming_Game//resources//grass.jpg"));
+			dirt = ImageIO.read(new File("..//Farming_Game//resources//dirt.jpg"));
+			growth1 = ImageIO.read(new File("..//Farming_Game//resources//growth1.jpg"));
+			growth2 = ImageIO.read(new File("..//Farming_Game//resources//growth2.jpg"));
+			finalGrowth = ImageIO.read(new File("..//Farming_Game//resources//finalGrowth.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -169,21 +175,21 @@ public class Display extends JPanel {
     			 
     			//cultivated
     			if(world[i][j].getBlockID()==1) {
-    				g.setColor(Color.LIGHT_GRAY);
+    				g.drawImage(dirt,world[i][j].getX(), world[i][j].getY(), world[i][j].getWidth(), world[i][j].getHeight(),null);
     			}
     			//planted
-    			if(world[i][j].getBlockID()==2) {
-    				g.setColor(Color.GRAY);
+    			else if(world[i][j].getBlockID()==2) {
+    				g.drawImage(growth1,world[i][j].getX(), world[i][j].getY(), world[i][j].getWidth(), world[i][j].getHeight(),null);
     			}
     			//growing
-    			if(world[i][j].getBlockID()==3) {
-    				g.setColor(Color.DARK_GRAY);
+    			else if(world[i][j].getBlockID()==3) {
+    				g.drawImage(growth2,world[i][j].getX(), world[i][j].getY(), world[i][j].getWidth(), world[i][j].getHeight(),null);
     			}
     			//ready to harvest
-    			if(world[i][j].getBlockID()==4) {
-    				g.setColor(Color.BLACK);
+    			else if(world[i][j].getBlockID()==4) {
+    				g.drawImage(finalGrowth,world[i][j].getX(), world[i][j].getY(), world[i][j].getWidth(), world[i][j].getHeight(),null);
     			}
-    			if(world[i][j].getBlockID()==0) {
+    			else if(world[i][j].getBlockID()==0) {
     				g.drawImage(grass,world[i][j].getX(), world[i][j].getY(), world[i][j].getWidth(), world[i][j].getHeight(),null);
     			}else {
     				g.fillRect(world[i][j].getX(), world[i][j].getY(), world[i][j].getWidth(), world[i][j].getHeight());
