@@ -173,7 +173,7 @@ public class Display extends JPanel {
     	//creates label in upper left
     	toolTitle.setText("<html>Current Tool = " +toolName +
     			"<br>Press 1 for Cultivator<br>Press 2 for Planter"
-    			+ "<br>Press 3 for Harvester<br>Press z to Save!<br>Black = Ready to Harvest!<br>Harvest to sell!<br><br>Crop value = " +cropValue + "<br>Cash = " +cash + "</html>");
+    			+ "<br>Press 3 for Harvester<br>Press z to Save!<br>Harvest to sell!<br><br>Crop value = " +cropValue + "<br>Cash = " +cash + "</html>");
 		toolTitle.setBounds(0, 0, 200, 125);
 		toolTitle.setFont(new Font("Calibri", Font.BOLD, 10));
 		add(toolTitle);
