@@ -21,6 +21,7 @@ public class Display extends JPanel {
     private JLabel toolTitle = new JLabel("Current Tool = " +toolName);
     private Block[][] world = new Block[worldWidth][worldHeight];
     private int[][] saveTerrain = new int[worldWidth][worldHeight];
+    private int[][] saveTime = new int[worldWidth][worldHeight];
     private BufferedImage playerImage;
     private BufferedImage grass;
     private BufferedImage dirt;
@@ -81,7 +82,7 @@ public class Display extends JPanel {
 	    			}
 	    			
 	    			//if planted start growing
-	    			if(world[i][j].getBlockID() == 2) {
+	    			if(world[i][j].getBlockID() == 2 || world[i][j].getBlockID() == 3) {
 	    				world[i][j].startGrowTime();
 	    			}
 	    			
@@ -94,11 +95,13 @@ public class Display extends JPanel {
     		for(i = 0; i < worldWidth;i++) {
     			for(j = 0; j < worldHeight;j++) {
     				saveTerrain[j][i] = world[i][j].getBlockID();
+    				saveTime[j][i] = world[i][j].getGrowTime();
     				}
     		}
     		
     		try {
-				save.saveWorld(saveTerrain);
+				save.saveWorld(saveTerrain, "resources/save.txt");
+				save.saveTime(saveTime, "resources/saveTime.txt");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -134,11 +137,13 @@ public class Display extends JPanel {
        save = new Save();
         
         saveTerrain = save.loadTerrain("resources/save.txt",worldWidth, worldHeight);
+        saveTime = save.loadTerrain("resources/saveTime.txt",worldWidth, worldHeight);
         
         int i,j;
 		for(i = 0; i < worldWidth;i++) {
 			for(j = 0; j < worldHeight;j++) {
 				world[i][j].setBlockID(saveTerrain[j][i]);
+				world[i][j].setGrowTime(saveTime[j][i]);
 				}
 		}
 		try {

@@ -44,9 +44,9 @@ public class Save {
 		
 	}
 	
-	public void saveWorld(int[][] terrain) throws IOException {
+	public void saveWorld(int[][] terrain, String filename) throws IOException {
 		
-		FileWriter fileWriter = new FileWriter("resources/save.txt");
+		FileWriter fileWriter = new FileWriter(filename);
 		for(int i = 0; i < 18; i++) {
 			for(int j = 0; j < 32; j++) {
 				fileWriter.write((char)terrain[i][j] + '0');
@@ -58,5 +58,18 @@ public class Save {
 		fileWriter.close();
 	}
 	
+public void saveTime(int[][] terrain, String filename) throws IOException {
+		
+		FileWriter fileWriter = new FileWriter(filename);
+		for(int i = 0; i < 18; i++) {
+			for(int j = 0; j < 32; j++) {
+				fileWriter.write(String.valueOf(terrain[i][j]));
+				fileWriter.write(" ");
+				
+			}
+			fileWriter.write("\n");
+		}
+		fileWriter.close();
+	}
 }
 
