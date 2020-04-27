@@ -22,6 +22,7 @@ public class Display extends JPanel {
     private Block[][] world = new Block[worldWidth][worldHeight];
     private int[][] saveTerrain = new int[worldWidth][worldHeight];
     private int[][] saveTime = new int[worldWidth][worldHeight];
+    private int [] moneyArr = new int[2];
     private BufferedImage playerImage;
     private BufferedImage grass;
     private BufferedImage dirt;
@@ -102,10 +103,12 @@ public class Display extends JPanel {
     		try {
 				save.saveWorld(saveTerrain, "resources/save.txt");
 				save.saveTime(saveTime, "resources/saveTime.txt");
+				save.saveMoney(cash, cropValue, "resources/saveMoney.txt");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+    		
     	//Cultivating grass when 1 is pressed
 		}else if(c == '1') {
 			tool = 1;
@@ -127,7 +130,7 @@ public class Display extends JPanel {
     }
 
     
-    public Display(Input keyInput){
+    public Display(Input keyInput) throws IOException{
     	this.keyInput = keyInput;
         addKeyListener(keyInput);
         setFocusable(true);
@@ -138,6 +141,10 @@ public class Display extends JPanel {
         
         saveTerrain = save.loadTerrain("resources/save.txt",worldWidth, worldHeight);
         saveTime = save.loadTerrain("resources/saveTime.txt",worldWidth, worldHeight);
+        moneyArr = save.loadMoney("resources/saveMoney.txt");
+        
+        cash = moneyArr[0];
+        cropValue = moneyArr[1];
         
         int i,j;
 		for(i = 0; i < worldWidth;i++) {

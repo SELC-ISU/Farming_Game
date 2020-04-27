@@ -43,6 +43,17 @@ public class Save {
 		 return null;
 		
 	}
+	public int[] loadMoney(String filename) throws IOException {
+		FileReader fr = new FileReader(filename);
+		BufferedReader br = new BufferedReader(fr);
+		int array[] = new int[2];
+		String line = br.readLine();
+		array[0] = Integer.parseInt(line);
+		line = br.readLine();
+		array[1] = Integer.parseInt(line);
+		br.close();
+		return array;
+	}
 	
 	public void saveWorld(int[][] terrain, String filename) throws IOException {
 		
@@ -70,6 +81,16 @@ public void saveTime(int[][] terrain, String filename) throws IOException {
 			fileWriter.write("\n");
 		}
 		fileWriter.close();
+	}
+
+
+public void saveMoney(int cash, int cropvalue, String filename) throws IOException {
+
+	FileWriter fileWriter = new FileWriter(filename);
+	fileWriter.write(String.valueOf(cash));
+	fileWriter.write("\n");
+	fileWriter.write(String.valueOf(cropvalue));
+	fileWriter.close();
 	}
 }
 
