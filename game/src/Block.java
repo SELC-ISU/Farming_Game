@@ -98,4 +98,8 @@ public class Block{
     	return t.getTime();
     }
 	
+	public void setGrowTime(int time) {
+		t.setTime(time);
+	}
+	
 }

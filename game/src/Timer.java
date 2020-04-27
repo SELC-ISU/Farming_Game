@@ -63,4 +63,11 @@ public class Timer {
 	public int getTime() {
 		return time;
 	}
+	/**
+	 * sets time to t
+	 * @param t
+	 */
+	public void setTime(int t) {
+		time = t;
+	}
 }
