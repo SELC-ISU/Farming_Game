@@ -51,8 +51,8 @@ public class Timer {
 	/**
 	 * starts the timer for the block 
 	 */
-	public void startTime() {
-		timeStart = true;
+	public void startTime(Boolean truefalse) {
+		timeStart = truefalse;
 		lastTime = System.nanoTime();
 	}
 	

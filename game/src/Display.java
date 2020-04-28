@@ -78,13 +78,15 @@ public class Display extends JPanel {
 						//does the action that the tool is meant to do. Resets the grow time when done.
 						if (world[i][j].contains(player.getX()+player.getWidth()/2, player.getY()+player.getHeight())) {
 	    					world[i][j].setBlockID(tool);
+	    					world[i][j].startGrowTime(false);
 	    					world[i][j].resetGrowTime();
+	    					
 						}
 	    			}
 	    			
 	    			//if planted start growing
 	    			if(world[i][j].getBlockID() == 2 || world[i][j].getBlockID() == 3) {
-	    				world[i][j].startGrowTime();
+	    				world[i][j].startGrowTime(true);
 	    			}
 	    			
     			}

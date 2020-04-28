@@ -86,8 +86,8 @@ public class Block{
 	/**
 	 * starts the timer for the block 
 	 */
-	public void startGrowTime() {
-		t.startTime();
+	public void startGrowTime(Boolean truefalse) {
+		t.startTime(truefalse);
 	}
 	
 	/**
